@@ -1,0 +1,372 @@
+{\rtf1\ansi\deff0{\fonttbl{\f0\fnil\fcharset0 Courier New;}}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\lang1035\f0\fs22 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Source+Code+Pro:500|Open+Sans|Oswald);\par
+\par
+/* Styles for Table of Contents */\par
+#io2012-toc \{\par
+  position: absolute;\par
+  top:0;\par
+  left:10px;\par
+  z-index: 999;\par
+\}\par
+#io2012-toc a\{\par
+  border-bottom: none;\par
+\}\par
+\par
+#io2012-toc .nav-pills > .active > a\{\par
+  background-color: darkslategray;\par
+  color: yellow;\par
+\}\par
+#io2012-toc li \{\par
+  margin-bottom: 0em;\par
+\}\par
+\par
+#io2012-toc li.current \{\par
+  background-color: yellow;\par
+\}\par
+\par
+.license \{\par
+  font-size: 14px;\par
+  color: #a9a9a9;\par
+  position: absolute;\par
+  bottom: 30px;\par
+  left: 60px;\par
+\}\par
+\par
+\par
+/* Styles for Title Slide */\par
+.title-slide hgroup > h1\{\par
+  font-family: 'Oswald', sans-serif;\par
+\}\par
+\par
+.title-slide hgroup > h2\{\par
+  font-family: 'Oswald', 'Calibri', sans-serif;\par
+\}\par
+\par
+/* Fonts and Spacing */\par
+article p, article li, article li.build, section p, section li\{\par
+  font-family: 'Open Sans','Helvetica', 'Crimson Text', 'Garamond',  'Palatino', sans-serif;\par
+  text-align: justify;\par
+  font-size:22px;\par
+  line-height: 1.5em;\par
+  color: #444;\par
+\}\par
+\par
+slide:not(.segue) h2\{\par
+  font-family: 'Calibri', Arial, sans-serif;\par
+  font-size: 52px;\par
+  font-style: normal;\par
+  font-weight: bold;\par
+  text-transform: normal;\par
+  letter-spacing: -2px;\par
+  line-height: 1.2em;\par
+/*  color: #193441;*/\par
+/*  color: #02574D;*/\par
+  color: #CC2904;\par
+\}\par
+\par
+/* Reduce Space between Title and Body */\par
+slides > slide > hgroup + article \{\par
+  margin-top: 15px;\par
+\}\par
+\par
+/* Remove Border, Margins and Padding from iframe */\par
+iframe \{\par
+  border: none;\par
+  margin: 0;\par
+  padding: 0;\par
+\}\par
+\par
+/* Knitr Images */\par
+.rimage.left \{\par
+  text-align: left;\par
+\}\par
+.rimage.right \{\par
+  text-align: right;\par
+\}\par
+.rimage.center \{\par
+  text-align: center;\par
+\}\par
+\par
+/* Quotes and Shout (for io2012, custom) */\par
+article q \{\par
+  font-family: 'Crimson Text', sans-serif;\par
+\}\par
+\par
+q \{\par
+  display: block;\par
+  font-size: 44px;\par
+  line-height: 56px;\par
+  margin-left: 50px;\par
+  margin-top: 100px;\par
+  margin-right: 150px;\par
+\}\par
+\par
+q::before \{\par
+  content: '\'e2\'80\'9c';\par
+  position: absolute;\par
+  display: inline-block;\par
+  margin-left: -2.1em;\par
+  width: 2em;\par
+  text-align: right;\par
+  font-size: 90px;\par
+  color: silver;\par
+\}\par
+\par
+q::after \{\par
+  content: '\'e2\'80\'9d';\par
+  position: absolute;\par
+  margin-left: .1em;\par
+  font-size: 90px;\par
+  color: silver;\par
+\}\par
+\par
+div.author \{\par
+  text-align: right;\par
+  font-size: 40px;\par
+  margin-top: 20px;\par
+  margin-right: 150px;\par
+\}\par
+\par
+div.author::before \{\par
+  content: '\'e2\'80\rdblquote ';\par
+\}\par
+\par
+q.shout:before \{\par
+  content: '';\par
+  position: absolute;\par
+  margin-left: -0.5em;\par
+\}\par
+\par
+q.shout:after \{\par
+  content: '';\par
+  position: absolute;\par
+  margin-left: 0.1em;\par
+\}\par
+\par
+/* Tables */\par
+table caption\{\par
+  margin-top: 20pt;\par
+  font-weight: normal;\par
+  font-family: "Trebuchet MS", Garuda, sans-serif;\par
+\}\par
+\par
+table th \{\par
+  text-transform: capitalize;\par
+\}\par
+\par
+/* Tables */\par
+\par
+table \{\par
+  border: none;\par
+  width: 100%;\par
+  border-collapse: collapse;\par
+  font-size: 24px;\par
+  line-height: 32px;\par
+  font-family: 'Trebuchet MS';\par
+  font-weight: bolder;\par
+  color: rgb(102, 102, 102);\par
+\}\par
+table thead \{\par
+  border-top: 1px solid #BFBEAD;\par
+  border-bottom: 1px solid #BFBEAD;\par
+\}\par
+table th, table td, table caption \{\par
+  margin: 0;\par
+  padding: 2pt 6pt;\par
+  text-align: left;\par
+  vertical-align: top;\par
+\}\par
+table th \{\par
+  background: #CFCEBD;\par
+  color: #575400;\par
+  text-transform: uppercase;\par
+\}\par
+table td \{\par
+  border-bottom: 1px solid #CFCEBD;\par
+\}\par
+table tr:nth-child(2n+1) \{\par
+/*  background: #E8F2FF; */\par
+  background: #EFEEDD;\par
+\}\par
+\par
+/* Styling for Ordered Lists (only for io2012) */\par
+\par
+ol \{\par
+  margin-left: 1.2em;\par
+  margin-bottom: 1em;\par
+  postion: relative;\par
+\}\par
+\par
+ol li \{\par
+  margin-bottom: 0.5em;\par
+  font-family: "Open Sans";\par
+\}\par
+\par
+ol li ol \{\par
+  margin-left: 0.5em;\par
+  margin-bottom: 0;\par
+\}\par
+\par
+ol, ul \{\par
+  margin-top: .5em;\par
+\}\par
+\par
+ol \{\par
+  list-style-type: decimal;\par
+\}\par
+\par
+/*Github Ribbon Test*/\par
+/* Source: https://github.com/dciccale/css3-github-ribbon */\par
+/* Define classes for example, definition, problem etc. */\par
+/* Choose meaningful colors for background and text */\par
+\par
+.example \{\par
+  background-color: #121621;\par
+  top: 1.2em;\par
+  right: -3.2em;\par
+  -webkit-transform: rotate(45deg);\par
+  -moz-transform: rotate(45deg);\par
+  transform: rotate(45deg);\par
+  -webkit-box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;\par
+  -moz-box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;\par
+  box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;\par
+  color: #FF0;\par
+  display: block;\par
+  padding: .6em 3.5em;\par
+  position: absolute;\par
+  font: bold .82em sans-serif;\par
+  text-align: center;\par
+  text-decoration: none;\par
+  text-shadow: 1px -1px 8px rgba(0,0,0,0.60);\par
+  -webkit-user-select: none;\par
+  -moz-user-select: none;\par
+  user-select: none;\par
+\}\par
+\par
+.definition \{\par
+  background-color: #a00;\par
+  top: 1.2em;\par
+  right: -3.2em;\par
+  -webkit-transform: rotate(45deg);\par
+  -moz-transform: rotate(45deg);\par
+  transform: rotate(45deg);\par
+  -webkit-box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;\par
+  -moz-box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;\par
+  box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;\par
+  color: #FFF;\par
+  display: block;\par
+  padding: .6em 3.5em;\par
+  position: absolute;\par
+  font: bold .82em sans-serif;\par
+  text-align: center;\par
+  text-decoration: none;\par
+  text-shadow: 1px -1px 8px rgba(0,0,0,0.60);\par
+  -webkit-user-select: none;\par
+  -moz-user-select: none;\par
+  user-select: none;\par
+\}\par
+\par
+\par
+/* Pasted from Custom.css */\par
+aside.gbar img \{\par
+  width: 175px;\par
+\}\par
+\par
+\par
+div.modal-body pre\{\par
+  width: 95%;\par
+  left: 0px;\par
+\}\par
+\par
+.pagination \{\par
+  position: absolute;\par
+  bottom: -5px;\par
+  left:110px;\par
+\}\par
+\par
+.pagination ul li:before \{\par
+  content: "";\par
+\}\par
+\par
+body \{\par
+  font-family: "Open Sans";\par
+  color: #444;\par
+\}\par
+\par
+p \{\par
+  text-align: justify;\par
+  line-height: 1.5em;\par
+\}\par
+/* Place Video on Top Right */\par
+/* FIXME: Move CSS to css/popcorn.css */\par
+section.video \{\par
+  position: absolute;\par
+  top: 0;\par
+  right: 0;\par
+  z-index: 1000;\par
+\}\par
+\par
+\par
+/* Smaller code fonts in modal popup */\par
+.modal pre code \{\par
+  font-size: 16px;\par
+\}\par
+\par
+img.center \{\par
+  display: block;\par
+  margin: auto auto;\par
+\}\par
+\par
+body \{\par
+  background-color: #000;\par
+\}\par
+.quiz-option label\{\par
+  display: inline;\par
+  font-size: 1em;\par
+\}\par
+slide.segue h2\{\par
+ font-family: "Open Sans Condensed";\par
+ font-weight: 700;\par
+\}\par
+slide:not(.segue)  h2\{\par
+ font-family: "Open Sans Condensed";\par
+ font-weight: 700;\par
+ color: darkslategray;\par
+\}\par
+article p \{\par
+  font-family: "Open Sans"\par
+\}\par
+\par
+code \{\par
+  font-size: 100%;\par
+  font-family: 'Inconsolata', 'Courier New', monospace;
+  color: gray;\par
+\}\par
+pre code \{\par
+  font-weight: 500;\par
+  -webkit-border-radius: 5px;\par
+  border-radius: 5px;\par
+\}\par
+\par
+#glimmer iframe \{\par
+  width: 100%;\par
+\}\par
+\par
+.title-slide \{\par
+  background-color: #CBE7A5; /* #EDE0CF; ; #CA9F9D*/\par
+  /* background-image:url(http://goo.gl/EpXln); */\par
+\}\par
+\par
+.title-slide hgroup > h1\{\par
+ font-family: 'Oswald', 'Helvetica', sanserif; \par
+\}\par
+\par
+.title-slide hgroup > h1, \par
+.title-slide hgroup > h2 \{\par
+  color: #535E43 ;  /* ; #EF5150*/\par
+\}\par
+\par
+\par
+\par
+}
+ 

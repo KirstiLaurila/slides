@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>R TRAINING</title>
+  <meta charset="utf-8">
+  <meta name="description" content="R TRAINING">
+  <meta name="author" content="Kirsti Laurila">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/default.css"></link>
+<link rel=stylesheet href="./assets/css/slidify.css"></link>
+<link rel=stylesheet href="./assets/css/tomorrow.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>R TRAINING</h1>
+    <h2></h2>
+    <p>Kirsti Laurila<br/>2015-06-16</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>With R you can make (almost) anything</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>apps
+
+<ul>
+<li><a href="https://tuufaast.shinyapps.io/developing/">https://tuufaast.shinyapps.io/developing/</a></li>
+</ul></li>
+<li>interactive graphs
+
+<ul>
+<li><a href="http://ouzor.github.io/blog/2014/11/21/interactive-visualizations.html">http://ouzor.github.io/blog/2014/11/21/interactive-visualizations.html</a></li>
+</ul></li>
+<li>these slides...
+
+<ul>
+<li>R markdown language, you need knitr and slidify packages</li>
+<li><a href="http://yihui.name/knitr/">knitr</a>
+
+<ul>
+<li>in CRAN</li>
+</ul></li>
+<li><a href="http://ramnathv.github.io/slidify/">slidify</a>
+
+<ul>
+<li>install first devtools, after that install slidify from github </li>
+</ul></li>
+</ul></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Basics - data structures (1)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Vectors
+
+<ul>
+<li>Atomic vectors: 
+<code>character, logical, integer, double</code></li>
+<li>OBS! <code>is.numeric</code> does not tell if a vector is double, test with <code>is.double</code> if there is a danger of having integers</li>
+</ul></li>
+<li>Lists</li>
+<li>Factors
+
+<ul>
+<li>OBS! <code>as.numeric(as.character(factor))</code> !!</li>
+<li><code>stringsAsFactors = FALSE</code> when reading in data prevents factors to be created</li>
+</ul></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Basics - data structures (2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Matrices (2-dim) and arrays</li>
+<li>Data frames
+
+<ul>
+<li>List!!! </li>
+<li>OBS! <code>data.frame()</code> turns character vectors to factors
+
+<ul>
+<li><code>stringsAsFactors = FALSE</code></li>
+</ul></li>
+<li><code>plyr::rbind.fill()</code></li>
+<li>if one wants a to have lists, or matrices or arrays in data.frame columns,  use <code>I</code></li>
+</ul></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Basics - functions</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Functions have three parts, <code>body()</code>, <code>formals()</code> and <code>environment()</code>
+
+<ul>
+<li>Except primitive functions ( written with C)</li>
+</ul></li>
+<li>Uses lazy evaluation
+
+<ul>
+<li><code>force()</code> can be used </li>
+</ul></li>
+<li>invisible return value with <code>invisible()</code></li>
+<li><code>on.exit()</code></li>
+<li>in R everything is basically a function call
+
+<ul>
+<li><code>&#39;[&#39;(x, 3)</code></li>
+<li><code>&#39;+&#39;(x, y)</code></li>
+<li><code>&#39;for&#39;(i, 1:2, print(i))</code></li>
+</ul></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Basics - reading in data (1)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">url &lt;- &quot;https://raw.githubusercontent.com/KirstiLaurila/R-training/master/csv.csv&quot;
+download.file(url, destfile=&quot;./data.csv&quot;)
+data &lt;- read.csv(&quot;./data.csv&quot;, header=FALSE)
+</code></pre>
+
+<pre><code class="r">url1 &lt;- &quot;https://github.com/KirstiLaurila/R-training/raw/master/excel1.xlsx&quot;
+download.file(url1, destfile = &quot;./data.xlsx&quot;, mode=&quot;wb&quot;)
+library(xlsx)
+data &lt;- read.xlsx(&quot;./data.xlsx&quot;, sheetIndex=1, header=FALSE, rowIndex=1:4)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Basics - reading in data (2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(XML)
+url2 &lt;- &quot;https://raw.githubusercontent.com/KirstiLaurila/R-training/master/Penguins.xml&quot;
+download.file(url2, destfile = &quot;./data.xml&quot;)
+dat_xml &lt;- xmlInternalTreeParse(&quot;./data.xml&quot;)
+rootNode &lt;- xmlRoot(dat_xml)
+xmlChildren(rootNode)
+</code></pre>
+
+<pre><code class="r">library(data.table)
+url &lt;- &quot;https://raw.githubusercontent.com/KirstiLaurila/R-training/master/csv.csv&quot;
+download.file(url, destfile = &quot;./data.csv&quot;)
+DT &lt;- fread(&quot;./data.csv&quot;)
+</code></pre>
+
+<pre><code class="r">read.delim(&quot;clipboard&quot;, header=FALSE)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Useful functions (1)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>cut</code> and <code>cut2</code> (Hmisc package)
+
+<ul>
+<li><code>cut2</code> might give nicer looking cuts</li>
+</ul></li>
+<li><code>split</code> </li>
+<li><code>subset</code></li>
+</ul>
+
+<pre><code class="r">library(Hmisc)
+values &lt;- 1:20
+cut(values, 10)
+cut2(values, g=10)
+</code></pre>
+
+<pre><code class="r">data(mtcars)
+cutByMpg &lt;- cut2(mtcars$mpg, g=5)
+splits &lt;- split(mtcars$wt, cutByMpg)
+dfWithGroups &lt;- data.frame(groups=I(splits), number=1:5)
+</code></pre>
+
+<pre><code class="r">subset(mtcars,mtcars$am==1)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Useful functions (2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>apply</code>
+
+<ul>
+<li>apply a function to a data.frame/array</li>
+<li><code>apply(mtcars,2,mean)</code></li>
+</ul></li>
+<li><code>lapply</code>
+
+<ul>
+<li>apply a function to a list</li>
+<li>returns always a list</li>
+<li><code>lapply(mtcars,mean)</code></li>
+</ul></li>
+<li><code>eapply</code>
+
+<ul>
+<li>apply function for the items in env </li>
+</ul></li>
+</ul>
+
+<pre><code class="r">env1=new.env()
+env1$x &lt;- 1:10
+env1$y &lt;- 21:10
+eapply(env1,mean)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Useful functions (3)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>sapply</code>
+
+<ul>
+<li>simplified lapply, returns vector, or matrix, or array, or list</li>
+<li>can be dangerous, vapply might be better (and faster)</li>
+<li><code>sapply(mtcars,mean)</code></li>
+</ul></li>
+<li><code>vapply</code>
+
+<ul>
+<li>like sapply but the output type is to be specified </li>
+<li><code>vapply(mtcars,mean, numeric(1))</code></li>
+<li><code>times=list(as.Date(&quot;2014-10-10&quot;),Sys.time()); sapply(times,class); vapply(times,class, character(1))</code></li>
+</ul></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Useful functions (4)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>Map</code>
+
+<ul>
+<li>apply a function to a elements of vectors</li>
+<li><code>Map(rep,mtcars$mpg,ceiling(runif(length(mtcars[,1]))*10))</code></li>
+</ul></li>
+<li><code>mapply</code>
+
+<ul>
+<li>simplified Map<br></li>
+<li><code>dataframe1=list(x=data.frame(c=runif(5),d=rpois(5,11)),</code>
+<code>y=data.frame(c=rnorm(5),d=rbinom(5,10,0.6)))</code></li>
+<li><code>mapply(function(x,y,z) x[y,z]*x[z,y], dataframe1,c(2,1),c(2,2))</code></li>
+</ul></li>
+<li><code>tapply</code>
+
+<ul>
+<li>apply function to defined groups</li>
+<li><code>tapply(mtcars$mpg, mtcars$am, mean)</code></li>
+</ul></li>
+<li><code>mclapply, mcMap</code>
+
+<ul>
+<li>package <code>multicore</code>, parallel <code>Map</code> and <code>lapply</code></li>
+</ul></li>
+<li><code>aggregate</code>
+
+<ul>
+<li><code>aggregate(mpg~am+cyl, mean, data=mtcars)</code></li>
+</ul></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Useful functions (5)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>by</code> 
+
+<ul>
+<li>tapply for data frames</li>
+<li><code>by(mtcars[,c(&quot;mpg&quot;, &quot;wt&quot;)], mtcars$am, function(x) lm(mpg~wt, data=x))</code></li>
+</ul></li>
+<li><code>merge</code>
+
+<ul>
+<li>joins data frames by columns or rows </li>
+</ul></li>
+</ul>
+
+<pre><code class="r">persons &lt;- data.frame(name=c(&quot;Anna&quot;, &quot;Andrew&quot;, &quot;Ken&quot;), 
+                      country=c(&quot;Finland&quot;, &quot;Germany&quot;, &quot;Germany&quot;))
+animals &lt;- data.frame(animal=c(&quot;penguin&quot;, &quot;giraffe&quot;, &quot;elephant&quot;), 
+                      country=c(&quot;Finland&quot;, &quot;Germany&quot;, &quot;Spain&quot;))
+merge(persons,animals, all = TRUE)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Useful functions (6)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>Reduce</code></li>
+</ul>
+
+<pre><code class="r">a=ceiling(10*runif(10)); b=ceiling(10*runif(10,1.5,3));c=ceiling(10*rnorm(10,1.5,3))
+d=list(a,b,c)
+Reduce(setdiff,d)
+setdiff(setdiff(a,b),c)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Exercises (1)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Take mtcars data set and add there a column with &quot;automatic&quot;, when am=0 and &quot;manual&quot; otherwise. Then, use different apply-functions to compute mean for each numeric column. Do not use index or name of the column, but the solution should work for all data-frames regardlesss of their size and column names. </p></li>
+<li><p>Find at least two different ways to compute variance for the weight (mtcars) for each vs-am combination. </p></li>
+<li><p>let <code>x &lt;- mtcars[,c(&quot;mpg&quot;, &quot;wt&quot;, &quot;hp&quot;)]</code> and <code>y &lt;- ceiling(runif(32)*2)</code>. 
+Now for each row i, compute for x a new column s so that
+<code>s=log(x[i,y]) + x[i,c(&quot;hp&quot;)]</code> if hp&gt;100, otherwise  <code>s=log(x[i,y])</code> use mapply/Map.</p></li>
+</ol>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Manipulating data with dplyr (1)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>works only with data frames (check <code>plyr</code> for different applys for other types)</li>
+<li><code>tbl_df</code> is a wrapper for data frame
+
+<ul>
+<li><code>mtcars2 &lt;- tbl_df(mtcars)</code></li>
+</ul></li>
+<li><code>filter</code> - select specific data
+
+<ul>
+<li><code>filter(mtcars2, am ==1, cyl&gt;4)</code></li>
+</ul></li>
+<li><code>slice</code> - select rows
+
+<ul>
+<li><code>slice(mtcars2,5:7)</code></li>
+</ul></li>
+<li><code>arrange</code> orders rows by columns
+
+<ul>
+<li><code>arrange(mtcars2, mpg, wt)</code></li>
+<li>OBS! same as <code>mtcars2[order(mtcars2$mpg, mtcars2$wt),]</code> or <code>mtcars2[with(mtcars2,order(mpg,wt)),]</code></li>
+</ul></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Manipulating data with dplyr (2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>select</code> select columns
+
+<ul>
+<li><code>select(mtcars2,mpg,wt)</code></li>
+<li><code>select (mtcars2, -mpg)</code>, <code>mtcars2[,-&quot;mpg&quot;]</code> does not work!</li>
+</ul></li>
+<li><code>rename</code>
+
+<ul>
+<li><code>rename(mtcars2, weight=wt)</code></li>
+</ul></li>
+<li><code>distinct</code><br>
+
+<ul>
+<li><code>distinct(mtcars2,cyl,vs)</code></li>
+<li><code>distinct(select(mtcars2,cyl,vs)) == unique(mtcars2[,c(&quot;cyl&quot;, &quot;vs&quot;)])</code></li>
+</ul></li>
+<li><code>mutate</code> create new columns also mutate_each
+
+<ul>
+<li>you can also refer to just created columns (unlike <code>transform</code> function)</li>
+<li><code>mutate(mtcars2, mpg_per_weight = mpg/wt, second = mpg_per_weight * carb )</code></li>
+<li><code>mutate_each(mtcars2, funs(sum, .-2))</code></li>
+</ul></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Manipulating data with dplyr (3)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>transmute</code> like mutate but keep ony the new  variables 
+
+<ul>
+<li><code>transmute(mtcars2, mpg_per_weight = mpg/wt, second = mpg_per_weight * carb )</code></li>
+</ul></li>
+<li><code>summarise</code> summarizes data frame also summarise_each
+
+<ul>
+<li><code>summarise(mtcars2,mean(mpg))</code></li>
+<li><code>summarise_each(mtcars2, funs(mean, sum(.*5)))</code></li>
+</ul></li>
+<li><code>sample_n</code> and <code>sample_frac</code> get random samples
+
+<ul>
+<li><code>sample_n(mtcars2,5) sample_frac(mtcars2, 0.1)</code></li>
+</ul></li>
+<li><code>%&gt;%</code> operator like piping in unix/linux
+
+<ul>
+<li><code>mtcars2 %&gt;% select(mpg,am,wt) %&gt;% rename (weight= wt) %&gt;%</code>
+<code>filter (weight&gt;3) %&gt;% arrange(weight)</code></li>
+</ul></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Manipulating data with dplyr (4)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>window functions (provide several outputs)
+
+<ul>
+<li>can be used with <code>mutate</code> and <code>filter</code></li>
+<li><code>mtcars2 %&gt;% select(mpg,am,wt) %&gt;% rename (weight= wt) %&gt;%</code>
+<code>filter (weight&gt;3) %&gt;% arrange(weight) %&gt;% mutate(rownumber= row_number())</code>
+<code>%&gt;% mutate(wt2=cumsum(weight)) %&gt;% filter(wt2 &lt;20)</code></li>
+<li>see more in <a href="http://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html">vignette</a></li>
+<li>connect to databases (postgres, mysql, sqlite)</li>
+</ul></li>
+</ul>
+
+<pre><code class="r">##OBS! does not work unless you have db mm on your localhost with work.module_models table
+module_models &lt;- tbl(src_postgres(dbname = &quot;mm&quot;, host = &quot;localhost&quot;,port = 5432, 
+                user = &quot;xsl&quot;,  password = NULL, 
+                options=&quot;-c search_path=work&quot;), &quot;module_models&quot;)
+result &lt;- module_models %&gt;% filter( output_id &gt; 1 &amp; key!= &quot;value_mapping&quot;) 
+          %&gt;% arrange(output_id)
+result$query 
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>load USArrets dataset and do the following with dplyr: </p>
+
+<ol>
+<li>Create data.frame that consists those states with more than 5 Murdests and 15 Rapes. </li>
+<li>Arrange the new data frame by 1. descending order by Assaults and 2. ascending by Rapes.</li>
+<li>Select then other columns but UrbanPop</li>
+<li>Create a new column to the data frame that has Murder column standardized, at the same command, compute the value for cumulative standard normal distribution in each of these standardized values. Add also rownumber for each line.</li>
+<li>Do all this with piping</li>
+</ol>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Environments and lexical scoping (1)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>R uses lexical scoping 
+
+<ul>
+<li>The parameter values are searched for in the place where the function is created, not where it&#39;s called</li>
+<li>what does the following script give for an answer: </li>
+</ul></li>
+</ul>
+
+<pre><code class="r">a=3;b=4;
+f&lt;- function(x){
+     x*b+a
+}
+g&lt;- function(x){
+     a=2; b=3;
+     f(x)
+}
+g(2)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Environments and lexical scoping (2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Variables (and functions) are looked for first inside the function, then in the environment where it&#39;s defined etc</li>
+<li>The variables are looked for when the function is called, not when it&#39;s defined</li>
+</ul>
+
+<pre><code class="r">f &lt;- function() x
+ x=10
+ f()
+ x=20
+ f()
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Environments and lexical scoping (3)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>dynamic scoping
+
+<ul>
+<li>if one wants to use dynamic scoping (variables are looked in the env where the function is called, not where it&#39;s defined) one can set it&#39;s environment</li>
+</ul></li>
+</ul>
+
+<pre><code class="r">a=3;b=4;
+f&lt;- function(x){
+   x*b+a
+}
+g&lt;- function(x){
+   environment(f)&lt;- new.env()
+   a=2; b=3;
+   f(x)
+}
+g(2)
+</code></pre>
+
+<ul>
+<li>be very careful with this, if you don&#39;t exactly know the dependencies of the function!!!</li>
+<li><code>codetools::findGlobals(f)</code></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Environments and lexical scoping (4)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>the working space&#39;s environment is <code>R_GlobalEnv</code></li>
+<li>the environment of a function/ working space can be determined with <code>environment()</code></li>
+<li>you can create environments with <code>new.env()</code></li>
+<li><code>emptyenv()</code></li>
+</ul>
+
+<pre><code class="r">f&lt;- function(x,y) x+y
+environment(f)&lt;- emptyenv()
+f(1,2)
+</code></pre>
+
+<ul>
+<li><code>globalenv()</code>; <code>baseenv()</code></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Environments and lexical scoping (5)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>you can set variables in an env either with assign or with <code>$</code></li>
+</ul>
+
+<pre><code class="r">a &lt;- 4; b&lt;-6; env1 &lt;- new.env(); env1$w&lt;-1; assign(&quot;b&quot;, 3, env1)
+get(&quot;b&quot;, env1); get(&quot;w&quot;, env1); 
+get(&quot;a&quot;, env1)
+</code></pre>
+
+<ul>
+<li>environments (except empty environment) have parent environment
+*<code>env1</code>:s parent environment is global environment where a is defined, it is searched next
+
+<ul>
+<li><code>search()</code></li>
+<li><code>attach/detach</code></li>
+<li><code>attach(env1); search(); w; detach(); w</code></li>
+</ul></li>
+<li><code>&lt;&lt;-</code> operator assigns value in parent.env
+<code>i=1; f&lt;-function(){i&lt;-5; i&lt;&lt;-6; i}; f(); i</code></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Find the search path by using loop. Hint. you can test if environment is empty with
+<code>identical(env,emptyenv)</code></p></li>
+<li><p>Find the objects in the parent environment of your current environment an the objects in <code>baseenv()</code></p></li>
+<li><p>Create a function that prints variable xxx in global environment. Define also xxx &lt;- 57. 
+Check how function works. Create then a new environment and change the environment of the function to be the new environment. Assign a new value for xxxx in the new environment and see how the function behaves differently. </p></li>
+</ol>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Intro to debugging, benchmarking and memory-optimization (1)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>traceback()</code> shows the path to the error</li>
+<li><code>debug()</code>, <code>browser()</code>, <code>debugSource()</code></li>
+<li><code>plyr::failwith()</code> is a nice alternative for <code>try()</code></li>
+<li><code>failwith(NA,f, quiet=TRUE)(2)</code></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>Intro to debugging, benchmarking and memory-optimization (2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>microbenchmarch</code></li>
+</ul>
+
+<pre><code class="r">microbenchmark(
+  &quot;[10, 1]&quot;      = mtcars[10, 1],
+  &quot;$mpg[10]&quot;     = mtcars$mpg[10],
+  &quot;[[c(1, 10)]]&quot; = mtcars[[c(1, 10)]],
+  &quot;[[1]][10]&quot;    = mtcars[[1]][10],
+  &quot;.subset2&quot;      = .subset2(mtcars, 1)[10]
+)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>Intro to debugging, benchmarking and memory-optimization (3)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>Rprof</code></li>
+</ul>
+
+<pre><code class="r">testFunction &lt;- function(){
+  a &lt;- c()
+  for(i in 1:10){
+    noisyWt &lt;- rep(mtcars$wt+runif(length(mtcars$mpg)), 10000)
+    model &lt;- lm(rep(mtcars$mpg, 10000)~noisyWt)
+    a &lt;- cbind(a,predict(model,data.frame(noisyWt=rep(mtcars$wt,1000)) ))
+  }
+}
+Rprof(&quot;profile1.out&quot;, line.profiling=TRUE)
+testFunction()
+Rprof(NULL)
+summaryRprof(&quot;profile1.out&quot;)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>Intro to debugging, benchmarking and memory-optimization (4)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>vectorise!!!</li>
+<li><code>pryr::mem_used()</code>, <code>mem_change()</code></li>
+<li>3.1.0 -&gt; loops much faster as no deep copies anymore</li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Microbenchmark the solutions for the second exercise of the training. </p></li>
+<li><p>Check how the example for profiling changes if you vectorise the data.frame creation. Do also microbenchmarking for these functions.</p></li>
+</ol>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>Object oriented programmin in R (1)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Three systems
+
+<ul>
+<li>S3
+
+<ul>
+<li>elements of the class can be accessed with $</li>
+</ul></li>
+<li>S4
+
+<ul>
+<li>elements of the class can be accessed with @</li>
+</ul></li>
+<li>RC (reference classes)
+
+<ul>
+<li>more like &#39;traditional&#39; oo-language objects</li>
+<li>not included in the training</li>
+</ul></li>
+<li><code>pryr::otype()</code></li>
+</ul></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>Object oriented programmin in R (2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Methods for S3-classes 
+
+<ul>
+<li>UseMethod in the function generic</li>
+<li>Greate then functions for (default and ) desired class(es)</li>
+</ul></li>
+<li>Methods for S4-classes 
+
+<ul>
+<li>Method name is first reserved with <code>setGeneric</code> (if the name is not yet in use)</li>
+<li><code>setMethod</code> defines the method</li>
+</ul></li>
+</ul>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>S3 object example</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">PenguinFan &lt;- function(species=&quot;Emperor penguin&quot;, living=&quot;Antarctica&quot;){
+        object &lt;- list(
+                favouritespecies = species,
+                continent = living
+       )
+        ## Set the name for the class
+        class(object) &lt;- append(class(object),&quot;PenguinFan&quot;)
+        return(object)
+}
+fan1 &lt;- PenguinFan()
+fan2 &lt;- PenguinFan(species=&quot;Adelie&quot;)
+ExtremePenguinFan &lt;- function(species=&quot;Emperor penguin&quot;, living=&quot;Antarctica&quot;, 
+                              visitsZoos = TRUE){
+       object = PenguinFan(species,living)
+       object$zoos = visitsZoos
+       class(object) &lt;- c(&quot;ExtremePenguinFan&quot;, &quot;PenguinFan&quot;)
+       return(object)
+}
+fan3 &lt;- ExtremePenguinFan(living=&quot;Africa&quot;)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">setSpecies &lt;- function(object, newValue){
+                UseMethod(&quot;setSpecies&quot;,object)
+              }
+
+setSpecies.default &lt;- function(object, newValue){
+                print(&quot;For this class, species cannot be set.&quot;)
+                return(object)
+        }
+
+setSpecies.PenguinFan &lt;- function(object, newValue) {
+      object$favouritespecies &lt;- newValue
+      return(object)
+}
+setSpecies(fan1,&quot;New Penguin Species&quot;)
+setSpecies(fan3, &quot;Yet another species&quot;)
+
+setSpecies.ExtremePenguinFan &lt;- function(object, newValue) {
+      object$favouritespecies &lt;- paste(&quot;new species&quot;,newValue)
+      return(object)
+}
+setSpecies(fan3, &quot;Yet another species&quot;)
+setSpecies(1:3)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>S4 Example (1)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">Penguin &lt;- setClass(
+        Class = &quot;Penguin&quot;,
+        # elements
+        slots = c(
+                height = &quot;numeric&quot;,
+                continent = &quot;character&quot;
+                ),
+        # optional default values
+        prototype=list(
+                height = 1.2,
+                continent = &quot;Antarctica&quot;
+                ),
+        # Check validity of the object
+        validity=function(object){
+                if((object@height &lt;= 0) ) {
+                        return(&quot;Penguin height must be positive&quot;)
+                }
+                return(TRUE)
+        }
+        )
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h2>S4 Example (2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">penguin1 &lt;- Penguin()
+penguin2 &lt;- Penguin(height=0.1, continent = &quot;New Zealand&quot;)
+penguin3 &lt;- Penguin(height=0)
+</code></pre>
+
+<pre><code class="r">AntarcticaPenguin &lt;- setClass(&quot;AntarcticaPenguin&quot;,
+  slots = c(likesIce = &quot;logical&quot;),
+  contains = &quot;Penguin&quot;)
+
+AntarcticaPenguin(likesIce=TRUE)
+
+penguin11 &lt;- new(&quot;AntarcticaPenguin&quot;, likesIce=TRUE)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>S4 Example (3)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">setGeneric(name=&quot;setHeight&quot;,
+          def=function(object,height){
+            standardGeneric(&quot;setHeight&quot;)
+          }
+          )
+
+setMethod(f=&quot;setHeight&quot;,
+          signature=&quot;Penguin&quot;,
+          definition=function(object,height){
+              object@height &lt;- height
+              validObject(object)
+              return(object)
+          }
+          )
+
+penguin1_1 &lt;- setHeight(penguin1,3)
+penguin1_2 &lt;- setHeight(penguin11,0.3)
+</code></pre>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-37" style="background:;">
+  <hgroup>
+    <h2>Extra exercise</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Create your own R markdown document by the help of the <a href="http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">cheat sheet</a></li>
+</ol>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-38" style="background:;">
+  <hgroup>
+    <h2>Extra reading</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="http://blog.obeautifulcode.com/R/How-R-Searches-And-Finds-Stuff/">http://blog.obeautifulcode.com/R/How-R-Searches-And-Finds-Stuff/</a></p>
+
+<p><a href="http://www.cyclismo.org/tutorial/R/objectOriented.html">http://www.cyclismo.org/tutorial/R/objectOriented.html</a></p>
+
+<p><a href="cran.r-project.org/doc/contrib/Short-refcard.pdf">cran.r-project.org/doc/contrib/Short-refcard.pdf</a></p>
+
+     <footer>
+       <img src = 'C:\Users\cpt2kil\Desktop\Kirsti Laurila\mydeck\assets\img\pp3.png'></img>
+     </footer> 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='With R you can make (almost) anything'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Basics - data structures (1)'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Basics - data structures (2)'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Basics - functions'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Basics - reading in data (1)'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Basics - reading in data (2)'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Useful functions (1)'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Useful functions (2)'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Useful functions (3)'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Useful functions (4)'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Useful functions (5)'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Useful functions (6)'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Exercises (1)'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Manipulating data with dplyr (1)'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Manipulating data with dplyr (2)'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Manipulating data with dplyr (3)'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Manipulating data with dplyr (4)'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Exercises'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Environments and lexical scoping (1)'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Environments and lexical scoping (2)'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Environments and lexical scoping (3)'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Environments and lexical scoping (4)'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Environments and lexical scoping (5)'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Exercises'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Intro to debugging, benchmarking and memory-optimization (1)'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Intro to debugging, benchmarking and memory-optimization (2)'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Intro to debugging, benchmarking and memory-optimization (3)'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Intro to debugging, benchmarking and memory-optimization (4)'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Exercises'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Object oriented programmin in R (1)'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Object oriented programmin in R (2)'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='S3 object example'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='NA'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='S4 Example (1)'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='S4 Example (2)'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='S4 Example (3)'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Extra exercise'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Extra reading'>
+         38
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

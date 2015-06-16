@@ -11,6 +11,17 @@ framework: io2012
 widgets: []
 ---
 
+## Agenda
+
+1. Basics
+2. Useful R functions
+3. dplyr
+4. environments 
+5. debugging, benchmarking, memory
+6. OO-programming in R
+
+---
+
 ## With R you can make (almost) anything
 
 * apps

@@ -487,8 +487,7 @@ summaryRprof("profile1.out")
 
 1. Microbenchmark the solutions for the second exercise of the training. 
 
-2. Check how the example for profiling changes if you vectorise the data.frame creation. Do also microbenchmarking for these functions.
-
+2. Check how the example for profiling changes if you vectorise the data.frame creation. 
 
 
 
